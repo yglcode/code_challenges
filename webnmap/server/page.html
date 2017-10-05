@@ -1,0 +1,17 @@
+<h1>NMAP Scan</h1>
+
+<form action="/scanpage" method="Get">
+HostName/IP:
+<input type="text" name="host_ip" value="{{.HostIP}}">
+<input type="submit" value="Scan"></div>
+</form>
+
+<p>Status:</p>
+{{.Status}}
+<p></p>
+<p>Results:</p>
+<p>
+{{range $key, $val := .Scans}}
+{{$val.Timestamp}} : Ports: {{$val.Ports}}; Added: {{$val.PortsAdd}}; Removed: {{$val.PortsDel}}<br>
+{{end}}
+</p>
