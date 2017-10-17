@@ -1,0 +1,18 @@
+# server listening port
+listener.port=4000
+# max concur client conns, default 5
+num.concur.clients=5
+# log file path name
+log.file.path.name=/tmp/numbers.log
+# log file batch size, 32k
+log.file.batch.size=32768
+# socket receive buffer size, 100k
+socket.receive.buffer.bytes=102400
+# ByteBuffer size to receive from SocketChannel, 100k
+socket.channel.receive.buffer.bytes=102400
+# 10 sec report
+report.interval.ms = 10000
+# number of processors
+num.processors = 4
+# server running durtion, 60 sec
+server.run.durationSec=15
