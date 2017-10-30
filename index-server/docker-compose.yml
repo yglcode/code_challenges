@@ -1,0 +1,31 @@
+version: "3.2"
+
+services:
+    index-server:
+        build: .
+        image: ${REGISTRY_SLASH}index-server${COLON_TAG}
+        
+        environment:
+            port: 8080
+            backupDir: /tmp/index-server/pkgs-registry
+            backupIntv: 10
+            
+        ports:
+            - "8080:8080"
+            
+        volumes:
+            - type: volume
+              source: data-volume
+              target: /tmp/index-server/pkgs-registry
+            
+        healthcheck:
+            test: "echo 'STATUS||' | nc localhost 8080 | [ $$(wc -m) -gt 6 ] || exit 1"
+            interval: 30s
+            timeout: 30s
+            retries: 3
+            
+        command: ["/index-server","-port", "8080", "-backupDir", "/tmp/index-server/pkgs-registry", "-backupInterval", "10"]
+
+
+volumes:
+    data-volume:
